@@ -1,0 +1,254 @@
+For 6 JAN Expiry
+*******************************_____________________**********************************
+
+DATE: 2022-01-06, DAY: Thursday
+
+********************************
+TIME: 09:25:00 -- Strike : 37300 -- Spot : 37271.2
+37600CE = 52.4
+TARGET: 37600CE = 0
+STOPLOSS: 37600CE = 0 
+
+********************************
+TIME: 09:25:00 -- Strike : 37300 -- Spot : 37271.2
+36900PE = 57.1
+TARGET: 36900PE = 0
+STOPLOSS: 36900PE = 0 
+
+MIS-SQUARE-OFF: 37600CE = 0.1, Time: 15:25:00
+PNL: 52.3
+
+MIS-SQUARE-OFF: 36900PE = 0.15, Time: 15:25:00
+PNL: 56.95
+
+CE PNL : 52.3
+PE PNL : 56.95
+Daily PNL : 109.25
+Total PNL : 109.25
+
+BNF OPEN :37242.55, HIGH : 37752.5 (1.37), LOW :37058.45 (-0.49), CLOSE :37495.95 (0.68)
+****************************************************************************************************************
+
+For 13 JAN Expiry
+*******************************_____________________**********************************
+
+DATE: 2022-01-13, DAY: Thursday
+
+********************************
+TIME: 09:25:00 -- Strike : 38500 -- Spot : 38541.3
+38800CE = 53.25
+TARGET: 38800CE = 0
+STOPLOSS: 38800CE = 0 
+
+********************************
+TIME: 09:25:00 -- Strike : 38500 -- Spot : 38541.3
+38300PE = 52.25
+TARGET: 38300PE = 0
+STOPLOSS: 38300PE = 0 
+
+MIS-SQUARE-OFF: 38800CE = 0.1, Time: 15:25:00
+PNL: 53.15
+
+MIS-SQUARE-OFF: 38300PE = 0.05, Time: 15:25:00
+PNL: 52.2
+
+CE PNL : 53.15
+PE PNL : 52.2
+Daily PNL : 105.35
+Total PNL : 214.60000000000002
+
+BNF OPEN :38717.55, HIGH : 38717.55 (0.0), LOW :38376.15 (-0.88), CLOSE :38471.55 (-0.64)
+****************************************************************************************************************
+
+********************************************#####################************************************************
+                                                                      CALCULATIONS 
+Total PNL: 214.6
+Total Trades: 4
+Total Trade Days: 2
+Profit: 214.6
+Loss: 0.0
+PNL Per Day: 107.3
+PNL Per Trade: 53.65
+Winning Streak: 2
+Losing Streak: 0
+Winning Streak Trade: 4
+Losing Streak Trade: 0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TOTAL PNL: 214.6
+TOTAL TRADES: 4
+TOTAL TRADING DAYS: 2
+
+DAYWISE
+
+PNL PER DAY: 107.3
+Winning Days: 2
+Lossing Days: 0
+Average Profit On Wining Days: 107.3
+Average Loss On Lossing Days: 0
+Max Daily Profit: 109.25
+Max Daily Loss: 105.35
+Winning Streak: 2
+Lossing Streak: 0
+Day Wise Accuracy: 100.0
+
+TradeWise
+
+TOTAL TRADES: 4
+AVERAGE PNL PER TRADE: 53.65
+Winning Trades: 4
+Lossing Trades: 0
+Average Profit On Winning Trades: 53.65
+Average Loss On Lossing Trades: 0
+Max Trade Profit: 56.95
+Max Trade Loss: 52.2
+Winning Streak Trade: 4
+Lossing Streak Trade: 0
+Trade Wise Accuracy: 100.0
+Target Count: 0
+SL Count: 0
+MIS COUNT: 4
+
+DAY WISE PNL(2018) :
+
+MONDAY: 0.0 
+TUESDAY: 0.0 
+WEDNESDAY: 0.0 
+THURSDAY: 0.0 
+FRIDAY: 0.0 
+
+MONTH WISE PNL(2018):
+
+JANUARY: 0.0 
+FEBRUARY: 0.0 
+MARCH: 0.0 
+APRIL: 0.0 
+MAY: 0.0 
+JUNE: 0.0 
+JULY: 0.0 
+AUGUST: 0.0 
+SEPTEMBER: 0.0 
+OCTOBER: 0.0 
+NOVEMBER: 0.0 
+DECEMBER: 0.0 
+
+
+DAY WISE PNL(2019) :
+
+MONDAY: 0.0 
+TUESDAY: 0.0 
+WEDNESDAY: 0.0 
+THURSDAY: 0.0 
+FRIDAY: 0.0 
+
+MONTH WISE PNL(2019):
+
+JANUARY: 0.0 
+FEBRUARY: 0.0 
+MARCH: 0.0 
+APRIL: 0.0 
+MAY: 0.0 
+JUNE: 0.0 
+JULY: 0.0 
+AUGUST: 0.0 
+SEPTEMBER: 0.0 
+OCTOBER: 0.0 
+NOVEMBER: 0.0 
+DECEMBER: 0.0 
+
+
+DAY WISE PNL(2020) :
+
+MONDAY: 0.0 
+TUESDAY: 0.0 
+WEDNESDAY: 0.0 
+THURSDAY: 0.0 
+FRIDAY: 0.0 
+
+MONTH WISE PNL(2020):
+
+JANUARY: 0.0 
+FEBRUARY: 0.0 
+MARCH: 0.0 
+APRIL: 0.0 
+MAY: 0.0 
+JUNE: 0.0 
+JULY: 0.0 
+AUGUST: 0.0 
+SEPTEMBER: 0.0 
+OCTOBER: 0.0 
+NOVEMBER: 0.0 
+DECEMBER: 0.0 
+
+
+DAY WISE PNL(2021) :
+
+MONDAY: 0.0 
+TUESDAY: 0.0 
+WEDNESDAY: 0.0 
+THURSDAY: 0.0 
+FRIDAY: 0.0 
+
+MONTH WISE PNL(2021):
+
+JANUARY: 0.0 
+FEBRUARY: 0.0 
+MARCH: 0.0 
+APRIL: 0.0 
+MAY: 0.0 
+JUNE: 0.0 
+JULY: 0.0 
+AUGUST: 0.0 
+SEPTEMBER: 0.0 
+OCTOBER: 0.0 
+NOVEMBER: 0.0 
+DECEMBER: 0.0 
+
+
+DAY WISE PNL(2022) :
+
+MONDAY: 0.0 
+TUESDAY: 0.0 
+WEDNESDAY: 0.0 
+THURSDAY: 214.6 
+FRIDAY: 0.0 
+
+MONTH WISE PNL(2022):
+
+JANUARY: 214.6 
+FEBRUARY: 0.0 
+MARCH: 0.0 
+APRIL: 0.0 
+MAY: 0.0 
+JUNE: 0.0 
+JULY: 0.0 
+AUGUST: 0.0 
+SEPTEMBER: 0.0 
+OCTOBER: 0.0 
+NOVEMBER: 0.0 
+DECEMBER: 0.0 
+
+DAY WISE PNL(2023) :
+
+MONDAY: 0.0 
+TUESDAY: 0.0 
+WEDNESDAY: 0.0 
+THURSDAY: 0.0 
+FRIDAY: 0.0 
+
+MONTH WISE PNL(2023):
+
+JANUARY: 0.0 
+FEBRUARY: 0.0 
+MARCH: 0.0 
+APRIL: 0.0 
+MAY: 0.0 
+JUNE: 0.0 
+JULY: 0.0 
+AUGUST: 0.0 
+SEPTEMBER: 0.0 
+OCTOBER: 0.0 
+NOVEMBER: 0.0 
+DECEMBER: 0.0 
+
+
+

@@ -1,0 +1,415 @@
+For 6 JAN Expiry
+*******************************_____________________**********************************
+
+DATE: 2022-01-06, DAY: Thursday
+
+********************************
+TIME: 09:15:00 -- Strike : 37200 -- Spot : 37242.55
+37200PE = 85.0
+TARGET: 37200PE = 0
+STOPLOSS: 37200PE = 0 
+
+MIS-SQUARE-OFF: 37200PE = 0.65, Time: 15:05:00
+PNL: -84.35
+
+CE PNL : 0
+PE PNL : -84.35
+Daily PNL : -84.35
+Total PNL : -84.35
+
+BNF OPEN :37242.55, HIGH : 37752.5 (1.37), LOW :37058.45 (-0.49), CLOSE :37495.95 (0.68)
+****************************************************************************************************************
+
+For 13 JAN Expiry
+*******************************_____________________**********************************
+
+DATE: 2022-01-13, DAY: Thursday
+
+********************************
+TIME: 09:15:00 -- Strike : 38700 -- Spot : 38717.55
+38700PE = 161.6
+TARGET: 38700PE = 0
+STOPLOSS: 38700PE = 0 
+
+MIS-SQUARE-OFF: 38700PE = 216.05, Time: 15:05:00
+PNL: 54.45000000000002
+
+CE PNL : 0
+PE PNL : 54.45000000000002
+Daily PNL : 54.45000000000002
+Total PNL : -29.899999999999977
+
+BNF OPEN :38717.55, HIGH : 38717.55 (0.0), LOW :38376.15 (-0.88), CLOSE :38471.55 (-0.64)
+****************************************************************************************************************
+
+For 20 JAN Expiry
+*******************************_____________________**********************************
+
+DATE: 2022-01-20, DAY: Thursday
+
+********************************
+TIME: 09:15:00 -- Strike : 38100 -- Spot : 38106.1
+38100PE = 193.15
+TARGET: 38100PE = 0
+STOPLOSS: 38100PE = 0 
+
+MIS-SQUARE-OFF: 38100PE = 230.45, Time: 15:05:00
+PNL: 37.29999999999998
+
+CE PNL : 0
+PE PNL : 37.29999999999998
+Daily PNL : 37.29999999999998
+Total PNL : 7.400000000000006
+
+BNF OPEN :38106.1, HIGH : 38167.95 (0.16), LOW :37592.25 (-1.35), CLOSE :37914.05 (-0.5)
+****************************************************************************************************************
+
+For 27 JAN Expiry
+*******************************_____________________**********************************
+
+DATE: 2022-01-27, DAY: Thursday
+
+********************************
+TIME: 09:15:00 -- Strike : 37100 -- Spot : 37058.2
+37100PE = 202.55
+TARGET: 37100PE = 0
+STOPLOSS: 37100PE = 0 
+
+MIS-SQUARE-OFF: 37100PE = 1.25, Time: 15:05:00
+PNL: -201.3
+
+CE PNL : 0
+PE PNL : -201.3
+Daily PNL : -201.3
+Total PNL : -193.9
+
+BNF OPEN :37058.2, HIGH : 38147.65 (2.94), LOW :37012.25 (-0.12), CLOSE :38147.65 (2.94)
+****************************************************************************************************************
+
+For 3 FEB Expiry
+*******************************_____________________**********************************
+
+DATE: 2022-02-03, DAY: Thursday
+
+********************************
+TIME: 09:15:00 -- Strike : 39300 -- Spot : 39255.7
+39300PE = 199.75
+TARGET: 39300PE = 0
+STOPLOSS: 39300PE = 0 
+
+MIS-SQUARE-OFF: 39300PE = 211.25, Time: 15:05:00
+PNL: 11.5
+
+CE PNL : 0
+PE PNL : 11.5
+Daily PNL : 11.5
+Total PNL : -182.4
+
+BNF OPEN :39255.7, HIGH : 39424.85 (0.43), LOW :38861.65 (-1.0), CLOSE :38893.5 (-0.92)
+****************************************************************************************************************
+
+For 10 FEB Expiry
+*******************************_____________________**********************************
+
+DATE: 2022-02-10, DAY: Thursday
+
+********************************
+TIME: 09:15:00 -- Strike : 38800 -- Spot : 38801.45
+38800PE = 175.75
+TARGET: 38800PE = 0
+STOPLOSS: 38800PE = 0 
+
+MIS-SQUARE-OFF: 38800PE = 0.9, Time: 15:05:00
+PNL: -174.85
+
+CE PNL : 0
+PE PNL : -174.85
+Daily PNL : -174.85
+Total PNL : -357.25
+
+BNF OPEN :38801.45, HIGH : 39197.2 (1.02), LOW :38520.0 (-0.73), CLOSE :38962.25 (0.41)
+****************************************************************************************************************
+
+For 17 FEB Expiry
+*******************************_____________________**********************************
+
+DATE: 2022-02-17, DAY: Thursday
+
+********************************
+TIME: 09:15:00 -- Strike : 38000 -- Spot : 38042.1
+38000PE = 150.0
+TARGET: 38000PE = 0
+STOPLOSS: 38000PE = 0 
+
+MIS-SQUARE-OFF: 38000PE = 386.45, Time: 15:05:00
+PNL: 236.45
+
+CE PNL : 0
+PE PNL : 236.45
+Daily PNL : 236.45
+Total PNL : -120.80000000000001
+
+BNF OPEN :38042.1, HIGH : 38124.5 (0.22), LOW :37425.6 (-1.62), CLOSE :37462.85 (-1.52)
+****************************************************************************************************************
+
+For 24 FEB Expiry
+*******************************_____________________**********************************
+
+DATE: 2022-02-24, DAY: Thursday
+
+********************************
+TIME: 09:15:00 -- Strike : 36100 -- Spot : 36085.2
+36100PE = 1800.0
+TARGET: 36100PE = 0
+STOPLOSS: 36100PE = 0 
+
+MIS-SQUARE-OFF: 36100PE = 695.3, Time: 15:05:00
+PNL: -1104.7
+
+CE PNL : 0
+PE PNL : -1104.7
+Daily PNL : -1104.7
+Total PNL : -1225.5
+
+BNF OPEN :36085.2, HIGH : 36709.15 (1.73), LOW :34991.35 (-3.03), CLOSE :35095.25 (-2.74)
+****************************************************************************************************************
+
+For 03 MAR Expiry
+*******************************_____________________**********************************
+
+DATE: 2022-03-03, DAY: Thursday
+
+********************************
+TIME: 09:15:00 -- Strike : 35600 -- Spot : 35621.15
+35600PE = 445.5
+TARGET: 35600PE = 0
+STOPLOSS: 35600PE = 0 
+
+MIS-SQUARE-OFF: 35600PE = 788.2, Time: 15:05:00
+PNL: 342.70000000000005
+
+CE PNL : 0
+PE PNL : 342.70000000000005
+Daily PNL : 342.70000000000005
+Total PNL : -882.8
+
+BNF OPEN :35621.15, HIGH : 35804.15 (0.51), LOW :34721.15 (-2.53), CLOSE :34973.25 (-1.82)
+****************************************************************************************************************
+
+For 10 MAR Expiry
+*******************************_____________________**********************************
+
+DATE: 2022-03-10, DAY: Thursday
+
+********************************
+TIME: 09:15:00 -- Strike : 35000 -- Spot : 34952.55
+35000PE = 266.05
+TARGET: 35000PE = 0
+STOPLOSS: 35000PE = 0 
+
+MIS-SQUARE-OFF: 35000PE = 594.25, Time: 15:05:00
+PNL: 328.2
+
+CE PNL : 0
+PE PNL : 328.2
+Daily PNL : 328.2
+Total PNL : -554.5999999999999
+
+BNF OPEN :34952.55, HIGH : 35374.15 (1.21), LOW :34218.05 (-2.1), CLOSE :34400.7 (-1.58)
+****************************************************************************************************************
+
+********************************************#####################************************************************
+                                                                      CALCULATIONS 
+Total PNL: -554.6
+Total Trades: 10
+Total Trade Days: 10
+Profit: 1010.6000000000001
+Loss: -1565.2
+PNL Per Day: -55.46
+PNL Per Trade: -55.46
+Winning Streak: 2
+Losing Streak: 1
+Winning Streak Trade: 2
+Losing Streak Trade: 1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TOTAL PNL: -554.6
+TOTAL TRADES: 10
+TOTAL TRADING DAYS: 10
+
+DAYWISE
+
+PNL PER DAY: -55.46
+Winning Days: 6
+Lossing Days: 4
+Average Profit On Wining Days: 168.43
+Average Loss On Lossing Days: -391.3
+Max Daily Profit: 342.7
+Max Daily Loss: -1104.7
+Winning Streak: 2
+Lossing Streak: 1
+Day Wise Accuracy: 60.0
+
+TradeWise
+
+TOTAL TRADES: 10
+AVERAGE PNL PER TRADE: -55.46
+Winning Trades: 6
+Lossing Trades: 4
+Average Profit On Winning Trades: 168.43
+Average Loss On Lossing Trades: -391.3
+Max Trade Profit: 342.7
+Max Trade Loss: -1104.7
+Winning Streak Trade: 2
+Lossing Streak Trade: 1
+Trade Wise Accuracy: 60.0
+Target Count: 0
+SL Count: 0
+MIS COUNT: 10
+
+DAY WISE PNL(2018) :
+
+MONDAY: 0.0 
+TUESDAY: 0.0 
+WEDNESDAY: 0.0 
+THURSDAY: 0.0 
+FRIDAY: 0.0 
+
+MONTH WISE PNL(2018):
+
+JANUARY: 0.0 
+FEBRUARY: 0.0 
+MARCH: 0.0 
+APRIL: 0.0 
+MAY: 0.0 
+JUNE: 0.0 
+JULY: 0.0 
+AUGUST: 0.0 
+SEPTEMBER: 0.0 
+OCTOBER: 0.0 
+NOVEMBER: 0.0 
+DECEMBER: 0.0 
+
+
+DAY WISE PNL(2019) :
+
+MONDAY: 0.0 
+TUESDAY: 0.0 
+WEDNESDAY: 0.0 
+THURSDAY: 0.0 
+FRIDAY: 0.0 
+
+MONTH WISE PNL(2019):
+
+JANUARY: 0.0 
+FEBRUARY: 0.0 
+MARCH: 0.0 
+APRIL: 0.0 
+MAY: 0.0 
+JUNE: 0.0 
+JULY: 0.0 
+AUGUST: 0.0 
+SEPTEMBER: 0.0 
+OCTOBER: 0.0 
+NOVEMBER: 0.0 
+DECEMBER: 0.0 
+
+
+DAY WISE PNL(2020) :
+
+MONDAY: 0.0 
+TUESDAY: 0.0 
+WEDNESDAY: 0.0 
+THURSDAY: 0.0 
+FRIDAY: 0.0 
+
+MONTH WISE PNL(2020):
+
+JANUARY: 0.0 
+FEBRUARY: 0.0 
+MARCH: 0.0 
+APRIL: 0.0 
+MAY: 0.0 
+JUNE: 0.0 
+JULY: 0.0 
+AUGUST: 0.0 
+SEPTEMBER: 0.0 
+OCTOBER: 0.0 
+NOVEMBER: 0.0 
+DECEMBER: 0.0 
+
+
+DAY WISE PNL(2021) :
+
+MONDAY: 0.0 
+TUESDAY: 0.0 
+WEDNESDAY: 0.0 
+THURSDAY: 0.0 
+FRIDAY: 0.0 
+
+MONTH WISE PNL(2021):
+
+JANUARY: 0.0 
+FEBRUARY: 0.0 
+MARCH: 0.0 
+APRIL: 0.0 
+MAY: 0.0 
+JUNE: 0.0 
+JULY: 0.0 
+AUGUST: 0.0 
+SEPTEMBER: 0.0 
+OCTOBER: 0.0 
+NOVEMBER: 0.0 
+DECEMBER: 0.0 
+
+
+DAY WISE PNL(2022) :
+
+MONDAY: 0.0 
+TUESDAY: 0.0 
+WEDNESDAY: 0.0 
+THURSDAY: -554.6 
+FRIDAY: 0.0 
+
+MONTH WISE PNL(2022):
+
+JANUARY: -193.9 
+FEBRUARY: -1031.6 
+MARCH: 670.9 
+APRIL: 0.0 
+MAY: 0.0 
+JUNE: 0.0 
+JULY: 0.0 
+AUGUST: 0.0 
+SEPTEMBER: 0.0 
+OCTOBER: 0.0 
+NOVEMBER: 0.0 
+DECEMBER: 0.0 
+
+DAY WISE PNL(2023) :
+
+MONDAY: 0.0 
+TUESDAY: 0.0 
+WEDNESDAY: 0.0 
+THURSDAY: 0.0 
+FRIDAY: 0.0 
+
+MONTH WISE PNL(2023):
+
+JANUARY: 0.0 
+FEBRUARY: 0.0 
+MARCH: 0.0 
+APRIL: 0.0 
+MAY: 0.0 
+JUNE: 0.0 
+JULY: 0.0 
+AUGUST: 0.0 
+SEPTEMBER: 0.0 
+OCTOBER: 0.0 
+NOVEMBER: 0.0 
+DECEMBER: 0.0 
+
+
+
+MAX Drawdown DAY WISE =  -1232.9
+MAX Drawdown TRADE WISE =  -1232.9
+

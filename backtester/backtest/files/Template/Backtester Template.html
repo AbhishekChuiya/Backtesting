@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Option Trading Backtest Results</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+
+    <style>
+        body {
+            font-family: 'Roboto';font-size: 22px;
+            margin: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+        .legs{
+            font-size: 25px;
+            font-family: 'Roboto';
+            text-align: left;
+        }
+       
+        .summary_div{
+            font-size: 20px;
+            margin: auto;
+            width: 60%;
+            padding: 10px;
+        }
+        .container_summary {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left; 
+
+        }
+
+        .statistic {
+            margin-bottom: 20px;
+        }
+
+        .label {
+            display: inline-block;
+            width: 400px;
+        }
+
+        .colon {
+            display: inline-block;
+            width: 40px;
+            font-weight: bold;
+        }
+
+        .value {
+            display: inline-block;
+            font-weight: bold;
+
+        }
+        pre{
+            font-size:25px;
+            font-weight: bold;
+
+        }
+        
+        .page{
+            page-break-before: always;
+        }
+        header {
+            color: #fff;
+            padding: 10px;
+            font-size: 35px
+        }
+        section.summary {
+            margin: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            font-size:20px;
+            text-align: justify;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            page-break-inside: auto; /* Enable breaking tables across pages */
+        }
+    
+        th, td {
+            border: 1px solid #ddd;
+            padding: 4px;
+
+        }
+    
+        th {
+            background-color: #48b8a0;
+            color: #fff; 
+            font-size: 20px;
+        }
+    
+        caption {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+    
+        .positive {
+            color: green;
+        }
+    
+        .negative {
+            color: red;
+        }
+    
+        table tr:hover {
+            background-color: #f2f2f2;
+        }
+        .chart figure {
+            max-width: 100%;
+            margin: 0; /* Remove default margin for the figure element */
+        }
+        .chart img {
+            width: 100%;
+            height: auto;
+        }
+    
+        .chart-container {
+            display: block; /* Use block layout for charts when printing */
+        }
+    
+        .table3,
+        .table4 {
+            max-height: 200px; /* Set a maximum height for the tables */
+            overflow-y: auto; /* Enable vertical scrollbar if needed */
+        }
+    
+        .chart {
+            padding: 0; /* Remove padding for charts when printing */
+            width: 100%;
+            max-width: none; /* Allow charts to extend beyond the page width */
+        }
+    
+        pre {
+            white-space: pre-wrap;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            page-break-inside: avoid; /* Avoid breaking preformatted text across pages */
+        }
+    
+        .container {
+            width: 100%;
+            margin: 0 auto;
+        }
+    
+        .summary-container {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+            text-align: left;
+        }
+    
+        .summary-container h1 {
+            color: #3498db;
+        }
+
+        
+        h1 {
+            text-align: center;
+            color: #48b8a0;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #e7f5ed;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+        }
+
+        h1:hover {
+            background-color: #2980b9;
+            color: #fff;
+            transform: scale(1.05);
+        }
+    
+        .summary-container hr {
+            border: 1px solid #3498db;
+        }
+    
+        .summary-container p {
+            margin-bottom: 10px;
+        }
+                @media only screen and (max-width: 768px) {
+            .chart {
+                padding: 10px;
+            }
+            .table3,
+            .table4 {
+                max-height: none; /* Remove the maximum height restriction */
+                overflow-y: auto; /* Enable vertical scrollbar if needed */
+            }
+        }
+        @media print {
+            @page {
+                size: A4 portrait; /* Set the page size to A4 in portrait orientation */
+                margin: 1cm; /* Set a margin of 1cm on all sides */
+            }
+    
+            .container {
+                width: 100%;
+                margin: 0;
+            }
+    
+            .chart-container {
+                display: block; /* Use block layout for charts when printing */
+            }
+    
+            .chart {
+                padding: 0; /* Remove padding for charts when printing */
+                width: 100%;
+            }
+    
+            .table1,
+            .table2,
+            .table3,
+            {
+                width: 100%; /* Make tables take full width when printing */
+            }
+            .table4 { /* Set a maximum height for the tables in print mode */
+                width: 100%/* Enable vertical scrollbar if needed */
+            }
+        }
+        .watermark {
+            position: fixed;
+            opacity: 0.2;
+            margin-top: 220px;
+            margin-left: 150px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 800px;
+            height: 850px;
+            z-index: -1;
+        }
+
+        .watermark1 {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-30deg);
+            background-image: url('https://lh3.googleusercontent.com/drive-viewer/AEYmBYT3VU5awGVhBNPVgf8dT0B3HU8DZA35dwmEpIch7T1zBclZU99dRJHxlELll8Y8vjEiKE2Mo1SIX3HMGWVIxkLpn53j=s1600');
+        }
+
+    </style>   
+    
+</head>
+<body>
+
+    
+    <img src="data:image/png;base64,{{ img1 }}">
+   
+    <header>
+        <h1>Backtest Report</h1>
+
+    </header>
+
+
+    <div class="container">
+        <h1>Legs Table</h1>
+        <table>
+            <tr>
+                <th>Name</th>
+                {% if counter3 is defined %}
+                    {% for i in range(1, counter3 + 1) %}
+                        <th>Leg{{ i }}</th>
+                    {% endfor %}
+                {% endif %}
+            </tr>
+            <tr>
+                <td>
+                    Index
+                </td>
+                {% for index_names in index_names_list %}
+                <td>
+                    {% if index_names|int == 1 %}
+                        BANK NIFTY
+                    {% elif index_names|int == 2 %}
+                        NIFTY
+                    {% elif index_names|int == 3 %}
+                        FIN NIFTY
+                    {% endif %}
+                </td>
+            {% endfor %}
+            
+            
+            </tr>
+            
+            <tr>
+                <td>Trade Type</td>
+                {% for trade_type in trade_types_list %}
+                <td>{{ trade_type }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>Option Type</td>
+                {% for option_type in option_type_list %}
+                <td>{{ option_type }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>Strike Selection</td>
+                {% for entrytype, moneyness, diffentry1 in comparison_data3 %}
+                    {% if entrytype == 'closest_premium' %}
+                        {% for diffentry, closesttype in comparison_data %}
+                            <td>
+                                {% if closesttype == 'less' %}
+                                    Less than {{ diffentry }}
+                                {% elif closesttype == 'greater' %}
+                                    Greater than {{ diffentry }}
+                                {% elif closesttype == 'near' %}
+                                    Nearest {{ diffentry }}
+                                {% endif %}
+                            {% endfor %}
+                            </td>
+                    {% else %}
+                        <td>
+
+                            {% if diffentry1 == 'ATM' %}
+                                {{ diffentry1 }} 
+                            {% else %}
+                                {{ diffentry1 }} {{ moneyness }} 
+                            {% endif %}
+                        </td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            
+            
+            
+            
+            <tr>
+                <td>Start Time</td>
+                {% for start_time in start_time_list %}
+                <td>{{ start_time }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>End Time</td>
+                {% for end_time in end_time_list %}
+                <td>{{ end_time }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>Instrument Product</td>
+                {% for instrument_product in instrument_product_list %}
+                <td>{{ instrument_product }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>Quantity</td>
+                {% for quantity in quantity_list %}
+                <td>{{ quantity }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>Target</td>
+                {% for target in target_list %}
+                    {% if target|int == 10000 %}
+                        <td>
+                                    Open
+                        </td>
+                    {% else %}
+
+                    {% for target_value, target_type in comparison_data5 %}
+                    <td>
+                                {% if target_type == "PERCENTAGE" %}
+                                    {{ target_value }}%
+                                {% else %}
+                                    {{ target_value }} Pts
+                                {% endif %}
+                            </td>
+                        {% endfor %}
+                    {% endif %}
+                    
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>Stop Loss</td>
+                {% for stop_loss_value in stoploss_list %}
+                    {% if stop_loss_value|int == 10000 %}
+                        <td>
+                                    Open
+                        </td>
+                    {% else %}
+
+                    {% for sl_value, sl_type in comparison_data4 %}
+                    <td>
+                                {% if sl_type == "PERCENTAGE" %}
+                                    {{ sl_value }}%
+                                {% else %}
+                                    {{ sl_value }} Pts
+                                {% endif %}
+                            </td>
+                        {% endfor %}
+                    {% endif %}
+                    
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>Trailing Stop Loss</td>
+                {% for trailing_stoploss in trailing_stoploss_list %}
+                <td>{{ trailing_stoploss }}</td>
+                {% endfor %}
+            </tr>
+
+
+            {% if trailing_stoploss_auto == True %}    
+                <tr>
+                <td>trailing_tg_x</td>
+                    
+                    {% for tr_x, tr_selectiontype in comparison_data6 %}
+                        <td>
+                        {% if tr_selectiontype == "PERCENTAGE" %}
+                        
+                            {{tr_x}}%
+
+                        {% else %}
+
+                            {{tr_x}} Pts
+
+                        {% endif %}
+                        </td>
+                    {% endfor %}
+            </tr>
+
+            <tr>
+                <td>trailing_sl_y</td>
+                    
+                    {% for tr_y, tr_selectiontype in comparison_data7 %}
+                        <td>
+                        {% if tr_selectiontype == "PERCENTAGE" %}
+                        
+                            {{tr_y}}%
+
+                        {% else %}
+
+                            {{tr_y}} Pts
+
+                        {% endif %}
+                        </td>
+                    {% endfor %}
+            </tr>
+
+
+            
+            
+            {% else %}
+            {% endif %}
+            <tr>
+                <td>ReEntry on SL</td>
+                {% for reentry_on_sl in reentry_on_sl_list %}
+                <td>{{ reentry_on_sl }}</td>
+                {% endfor %}
+            </tr>
+
+            {% if reentry_sl_auto == True %}  
+            <tr>
+                <td>ReEntry Times</td>
+                {% for reentry_time in reentry_time_list %}
+                <td>{{ reentry_time }}</td>
+                {% endfor %}
+            </tr>
+            {% else %}
+            {% endif %}
+
+
+            <tr>
+                <td>ReEntry on Target</td>
+                {% for reentry_on_target in reentry_on_target_list %}
+                <td>{{ reentry_on_target }}</td>
+                {% endfor %}
+            </tr>
+
+            {% if reentry_tg_auto == True %}  
+
+            <tr>
+                <td>ReEntry Times</td>
+                {% for reentry_time in reentry_time_list %}
+                <td>{{ reentry_time }}</td>
+                {% endfor %}
+            </tr>
+            {% else %}
+            {% endif %}
+
+            
+            <tr>
+                <td>ReExecute</td>
+                {% for reexecute in reexecute_list %}
+                <td>{{ reexecute }}</td>
+                {% endfor %}
+            </tr>
+
+            {% if reexecute_auto == True %} 
+            <tr>
+                <td>ReExecute Times</td>
+                {% for re_execute_times in re_execute_times_list %}
+                <td>{{ re_execute_times }}</td>
+                {% endfor %}
+            </tr>
+            {% else %}
+            {% endif %}
+
+
+            <tr>
+                <td>Wait & Trade</td>
+                {% for waitntrade in waitntrade_list %}
+                <td>{{ waitntrade }}</td>
+                {% endfor %}
+            </tr>
+            {% if wandt_auto == True %}  
+            <tr>
+                <td>Wait & Trade Up/Down</td>
+                {% for inc_decwt in inc_decwt_list %}
+                <td>{{ inc_decwt }}</td>
+                {% endfor %}
+            </tr>
+
+            <tr>
+                <td>Wait & Trade Diff</td>
+                    
+                    {% for diff_wnt, wnt_selectiontype in comparison_data8 %}
+                        <td>
+                        {% if wnt_selectiontype == "PERCENTAGE" %}
+                        
+                            {{diff_wnt}}%
+
+                        {% else %}
+
+                            {{diff_wnt}} Pts
+
+                        {% endif %}
+                        </td>
+                    {% endfor %}
+            </tr>
+
+            {% else %}
+            {% endif %}
+
+            <tr>
+                <td>Total Premium Exit</td>
+                {% for total_premium_exit in total_premium_exit_list %}
+                <td>{{ total_premium_exit }}</td>
+                {% endfor %}
+            </tr>
+
+            {% if mtm_sl_flag == true %}
+                <tr>
+                    <td>MTM SL</td>
+                    {% for mtm_sl in mtm_sl_list %}
+                        <td>{{ mtm_sl }} Rs.</td>
+                    {% endfor %}
+                </tr>
+            {% endif %}
+            {% if mtm_target_flag == true %}
+                <tr>
+                    <td>MTM Target</td>
+                    {% for mtm_target in mtm_target_list %}
+                        <td>{{ mtm_target }} Rs.</td>
+                    {% endfor %}
+                </tr>
+            {% endif %}
+            {% if mtm_sl_trail_flag == true %}
+                <tr>
+                    <td>MTM SL Trail</td>
+                    {% for mtm_sl_trail in mtm_sl_trail_list %}
+                        <td>{{ mtm_sl_trail }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>If MTM Profit Reaches (X)</td>
+                    {% for mtm_x in mtm_x_list %}
+                        <td>{{ mtm_x }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Then Move MTM SL By</td>
+                    {% for mtm_y in mtm_y_list %}
+                        <td>{{ mtm_y }}</td>
+                    {% endfor %}
+                </tr>
+                
+            {% endif %}
+            <tr>
+                <td>Lock & Trail</td>
+                {% for mtm_lock_profit in mtm_lock_profit_list %}
+                <td>{{ mtm_lock_profit }}</td>
+                {% endfor %}
+            </tr>
+            {% if lock_n_trail_auto == True %}  
+            <tr>
+                <td>If Profit Reaches</td>
+                {% for profit_lock_points in profit_lock_points_list %}
+                <td>{{ profit_lock_points }} Rs.</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>Lock Profit at</td>
+                {% if counter3 is defined %}
+                    {% for i in range(1, counter3 + 1) %}
+                        <td>{{lock_sl_temp}} Rs.</td>
+                    {% endfor %}
+                {% endif %}
+            </tr>
+            <tr>
+                <td>Every Increase in Profit by</td>
+                {% for lock_x_points in lock_x_points_list %}
+                <td>{{ lock_x_points }} Rs.</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>Trail Profit By</td>
+                {% for lock_y_points in lock_y_points_list %}
+                <td>{{ lock_y_points }} Rs.</td>
+                {% endfor %}
+            </tr>
+            
+            {% else %}
+            {% endif %}
+            
+        </table>
+    </div>
+
+    <div class="page"></div> <!-- This will cause a page break after the previous content -->
+
+    
+    <center><h1>Summary Report</h1></center>
+    <br><br><br>
+   <center>
+    <div class="summary_div" style="display: flex; justify-content: center;">
+<div style="text-align:left" class="container_summary">
+
+    <div class="statistic">
+        <span class="label">01. Estimated Margin Requirement</span>
+        <span class="colon">:</span>
+        <span class="value">100000 Rs.</span>
+    </div>
+
+    <div class="statistic">
+        <span class="label">02. Net Profit/Loss</span>
+        <span class="colon">:</span>
+        <span class="value">{{ net_profit_points }} Rs. ({{ net_profit }} Points)</span>
+    </div>
+    <div class="statistic">
+        <span class="label">03. Number of Trading Days</span>
+        <span class="colon">:</span>
+        <span class="value">{{ trading_days }} Days</span>
+    </div>
+    <div class="statistic">
+        <span class="label">04. Average Profit per Day</span>
+        <span class="colon">:</span>
+        <span class="value">{{ avg_profit_per_day_rupees }} Rs. ({{ avg_profit_per_day }} Points)</span>
+    </div>
+    <div class="statistic">
+        <span class="label">05. Maximum Trade Profit</span>
+        <span class="colon">:</span>
+        <span class="value">{{ max_tt_rupees }} Rs. ({{ max_tt }} Points)</span>
+    </div>
+    <div class="statistic">
+        <span class="label">06. Maximum Trade Loss</span>
+        <span class="colon">:</span>
+        <span class="value">{{ min_tt_rupees }} Rs. ({{ min_tt }} Points)</span>
+
+    </div>
+    <div class="statistic">
+        <span class="label">07. Number of Winning Days</span>
+        <span class="colon">:</span>
+        <span class="value">{{ winning_days }} Days</span>
+    </div>
+    <div class="statistic">
+        <span class="label">08. Number of Losing Days</span>
+        <span class="colon">:</span>
+        <span class="value">{{ losing_days }} Days</span>
+    </div>
+    <div class="statistic">
+        <span class="label">09. Day-wise Accuracy</span>
+        <span class="colon">:</span>
+        <span class="value">{{ daywise_accuracy }}% </span>
+    </div>
+    <div class="statistic">
+        <span class="label">10. Number of Trades</span>
+        <span class="colon">:</span>
+        <span class="value">{{ num_trades }} Trades</span>
+    </div>
+    <div class="statistic">
+        <span class="label">11. Average Profit per Trade</span>
+        <span class="colon">:</span>
+        <span class="value">{{ avg_profit_per_trade_rupees }} Rs. ({{ avg_profit_per_trade }} Points)</span>
+    </div>
+    <div class="statistic">
+        <span class="label">12. Number of Winning Trades</span>
+        <span class="colon">:</span>
+        <span class="value">{{ winning_trades }} Trades</span>
+    </div>
+    <div class="statistic">
+        <span class="label">13. Average Profit On Wining Days</span>
+        <span class="colon">:</span>
+        <span class="value">{{ avg_profit_winning_days_rupees }} Rs. ({{ rounded_avg_profit_winning_days }} Points)</span>
+    </div>
+    <div class="statistic">
+        <span class="label">14. Average Loss On Losing Days</span>
+        <span class="colon">:</span>
+        <span class="value">{{ avg_loss_lossing_days_rupees }} Rs. ({{ rounded_avg_loss_lossing_days }} Points)</span>
+    </div>
+    <div class="statistic">
+        <span class="label">15. Average Profit On Winning Trades</span>
+        <span class="colon">:</span>
+        <span class="value">{{ avg_profit_winning_trades_rupees }} Rs. ({{ rounded_avg_profit_winning_trades }} Points)</span>
+    </div>
+    <div class="statistic">
+        <span class="label">16. Average Loss On Losing Trades</span>
+        <span class="colon">:</span>
+        <span class="value"> {{ avg_loss_lossing_trades_rupees }} Rs. ({{ rounded_avg_loss_lossing_trades }} Points) </span>
+    </div>
+    <div class="statistic">
+        <span class="label">17. Max Daily Profit</span>
+        <span class="colon">:</span>
+        <span class="value">{{ max_t_rupees }} Rs. ({{ max_t }} Points)</span>
+    </div>
+    <div class="statistic">
+        <span class="label">18. Max Daily Loss</span>
+        <span class="colon">:</span>
+        <span class="value">{{ min_t_rupees }} Rs. ({{ min_t }} Points)</span>
+    </div>
+    
+    <div class="statistic">
+        <span class="label">19. Number of Losing Trades</span>
+        <span class="colon">:</span>
+        <span class="value">{{ losing_trades }} Trades</span>
+    </div>
+    <div class="statistic">
+        <span class="label">20. Tradewise Accuracy</span>
+        <span class="colon">:</span>
+        <span class="value">{{ tradewise_accuracy }}%</span>
+    </div>
+    <div class="statistic">
+        <span class="label">21. Day Wise Max Drawdown</span>
+        <span class="colon">:</span>
+        <span class="value">{{ day_wise_dd_rupees }} Rs. ({{ day_wise_dd }} Points)</span>
+    </div>
+    <div class="statistic">
+        <span class="label">22. Tradewise Max Drawdown</span>
+        <span class="colon">:</span>
+        <span class="value">{{ trade_wise_dd_rupees }} Rs. ({{ trade_wise_dd }} Points)</span>
+    </div>
+    <div class="statistic">
+        <span class="label">23. Winning Streak Daywise</span>
+        <span class="colon">:</span>
+        <span class="value">{{ max_win_streak }} Days</span>
+    </div>
+    <div class="statistic">
+        <span class="label">24. Losing Streak Daywise</span>
+        <span class="colon">:</span>
+        <span class="value">{{ max_loss_streak }} Days</span>
+    </div>
+    <div class="statistic">
+        <span class="label">25. Returns: Max DD Ratio</span>
+        <span class="colon">:</span>
+        <span class="value">{{ returns_dd_ratio }} </span>
+    </div>
+    <div class="statistic">
+        <span class="label">26. Expectancy Trade</span>
+        <span class="colon">:</span>
+        <span class="value">{{ expectancy_ratio }} </span>
+    </div>
+    <div class="statistic">
+        <span class="label">27. Expectancy Day </span>
+        <span class="colon">:</span>
+        <span class="value">{{ expectancy_ratio1 }} </span>
+    </div>
+    <img src="data:image/png;base64,{{ img2 }}" style="margin-left: 90%" width="85px" height="auto">
+</div>
+</div>
+
+</center>
+
+
+
+<div class="page" ></div> <!-- This will cause a page break after the previous content -->
+    
+<br><br><br>
+
+<center>
+    <h1>DayWise Chart</h1>
+    <div class="chart-container">
+        
+        <section class="chart">
+
+
+<br><br><br>
+
+        <figure style="position: relative; display: inline-block;">
+            <img src="data:image/png;base64,{{ daywise_chart }}" alt="Day Wise Chart" style="max-width: 100%; height: auto; display: block;">
+            <img src="data:image/png;base64,{{ img2 }}" style="position: absolute; top: 87%; left: 91%; transform: translate(-50%, -50%); width: 65px; height: auto;">
+        </figure>
+
+        <p>The period of Max Drawdown is indicated by two red dots on the PNL curve.</p>
+        </section>
+
+
+        <div class="page"></div> <!-- This will cause a page break after the previous content -->
+        <br><br><br>
+
+        <h1>TradeWise Chart</h1>
+        <section class="chart">
+<br><br><br>
+
+        <figure style="position: relative; display: inline-block;">
+            <img src="data:image/png;base64,{{ tradewise_chart }}" alt="Trade Wise Chart" style="max-width: 100%; height: auto; display: block;">
+            <img src="data:image/png;base64,{{ img2 }}" style="position: absolute; top: 87%; left: 91%; transform: translate(-50%, -50%); width: 65px; height: auto;">
+        </figure>
+        <p>The period of Max Drawdown is indicated by two red dots on the PNL curve.</p>
+
+        </section>
+        <div class="page"></div> <!-- This will cause a page break after the previous content -->
+
+        
+</div>
+    </div>
+</center>
+<br><br><br>
+
+<table class="table1">
+    <h1>Daywise Breakup</h1>
+    <br><br><br>
+
+    <tr>
+        <th></th>
+        <th>Mon</th>
+        <th>Tue</th>
+        <th>Wed</th>
+        <th>Thu</th>
+        <th>Fri</th>
+    </tr>
+    {% if date_value_2018 == True %}
+
+    <tr>
+        <td>2018</td>
+        <td class="{{ 'positive' if rounded_monday_2018 >= 0 else 'negative' }}">{{ rounded_monday_2018 }}</td>
+        <td class="{{ 'positive' if rounded_tuesday_2018 >= 0 else 'negative' }}">{{ rounded_tuesday_2018 }}</td>
+        <td class="{{ 'positive' if rounded_wednesday_2018 >= 0 else 'negative' }}">{{ rounded_wednesday_2018 }}</td>
+        <td class="{{ 'positive' if rounded_thursday_2018 >= 0 else 'negative' }}">{{ rounded_thursday_2018 }}</td>
+        <td class="{{ 'positive' if rounded_friday_2018 >= 0 else 'negative' }}">{{ rounded_friday_2018 }}</td>
+    </tr>
+
+    <tr>
+        <td>ROI (2018)</td>
+        <td class="{{ 'positive' if rounded_monday_roi_2018 >= 0 else 'negative' }}">{{ rounded_monday_roi_2018 }}</td>
+        <td class="{{ 'positive' if rounded_tuesday_roi_2018 >= 0 else 'negative' }}">{{ rounded_tuesday_roi_2018 }}</td>
+        <td class="{{ 'positive' if rounded_wednesday_roi_2018 >= 0 else 'negative' }}">{{ rounded_wednesday_roi_2018 }}</td>
+        <td class="{{ 'positive' if rounded_thursday_roi_2018 >= 0 else 'negative' }}">{{ rounded_thursday_roi_2018 }}</td>
+        <td class="{{ 'positive' if rounded_friday_roi_2018 >= 0 else 'negative' }}">{{ rounded_friday_roi_2018 }}</td>
+    </tr>
+    {% else %}
+    {% endif %}
+    {% if date_value_2019 == True %}
+
+    <tr>
+        <td>2019</td>
+        <td class="{{ 'positive' if rounded_monday_2019 >= 0 else 'negative' }}">{{ rounded_monday_2019 }}</td>
+        <td class="{{ 'positive' if rounded_tuesday_2019 >= 0 else 'negative' }}">{{ rounded_tuesday_2019 }}</td>
+        <td class="{{ 'positive' if rounded_wednesday_2019 >= 0 else 'negative' }}">{{ rounded_wednesday_2019 }}</td>
+        <td class="{{ 'positive' if rounded_thursday_2019 >= 0 else 'negative' }}">{{ rounded_thursday_2019 }}</td>
+        <td class="{{ 'positive' if rounded_friday_2019 >= 0 else 'negative' }}">{{ rounded_friday_2019 }}</td>
+    </tr>
+
+    <tr>
+        <td>ROI (2019)</td>
+        <td class="{{ 'positive' if rounded_monday_roi_2019 >= 0 else 'negative' }}">{{ rounded_monday_roi_2019 }}</td>
+        <td class="{{ 'positive' if rounded_tuesday_roi_2019 >= 0 else 'negative' }}">{{ rounded_tuesday_roi_2019 }}</td>
+        <td class="{{ 'positive' if rounded_wednesday_roi_2019 >= 0 else 'negative' }}">{{ rounded_wednesday_roi_2019 }}</td>
+        <td class="{{ 'positive' if rounded_thursday_roi_2019 >= 0 else 'negative' }}">{{ rounded_thursday_roi_2019 }}</td>
+        <td class="{{ 'positive' if rounded_friday_roi_2019 >= 0 else 'negative' }}">{{ rounded_friday_roi_2019 }}</td>
+    </tr>
+    {% else %}
+    {% endif %}
+    {% if date_value_2020 == True %}
+
+    <tr>
+        <td>2020</td>
+        <td class="{{ 'positive' if rounded_monday_2020 >= 0 else 'negative' }}">{{ rounded_monday_2020 }}</td>
+        <td class="{{ 'positive' if rounded_tuesday_2020 >= 0 else 'negative' }}">{{ rounded_tuesday_2020 }}</td>
+        <td class="{{ 'positive' if rounded_wednesday_2020 >= 0 else 'negative' }}">{{ rounded_wednesday_2020 }}</td>
+        <td class="{{ 'positive' if rounded_thursday_2020 >= 0 else 'negative' }}">{{ rounded_thursday_2020 }}</td>
+        <td class="{{ 'positive' if rounded_friday_2020 >= 0 else 'negative' }}">{{ rounded_friday_2020 }}</td>
+    </tr>
+
+    <tr>
+        <td>ROI (2020)</td>
+        <td class="{{ 'positive' if rounded_monday_roi_2020 >= 0 else 'negative' }}">{{ rounded_monday_roi_2020 }}</td>
+        <td class="{{ 'positive' if rounded_tuesday_roi_2020 >= 0 else 'negative' }}">{{ rounded_tuesday_roi_2020 }}</td>
+        <td class="{{ 'positive' if rounded_wednesday_roi_2020 >= 0 else 'negative' }}">{{ rounded_wednesday_roi_2020 }}</td>
+        <td class="{{ 'positive' if rounded_thursday_roi_2020 >= 0 else 'negative' }}">{{ rounded_thursday_roi_2020 }}</td>
+        <td class="{{ 'positive' if rounded_friday_roi_2020 >= 0 else 'negative' }}">{{ rounded_friday_roi_2020 }}</td>
+    </tr>
+    {% else %}
+    {% endif %}
+    {% if date_value_2021 == True %}
+
+    <tr>
+        <td>2021</td>
+        <td class="{{ 'positive' if rounded_monday_2021 >= 0 else 'negative' }}">{{ rounded_monday_2021 }}</td>
+        <td class="{{ 'positive' if rounded_tuesday_2021 >= 0 else 'negative' }}">{{ rounded_tuesday_2021 }}</td>
+        <td class="{{ 'positive' if rounded_wednesday_2021 >= 0 else 'negative' }}">{{ rounded_wednesday_2021 }}</td>
+        <td class="{{ 'positive' if rounded_thursday_2021 >= 0 else 'negative' }}">{{ rounded_thursday_2021 }}</td>
+        <td class="{{ 'positive' if rounded_friday_2021 >= 0 else 'negative' }}">{{ rounded_friday_2021 }}</td>
+    </tr>
+
+    <tr>
+        <td>ROI (2021)</td>
+        <td class="{{ 'positive' if rounded_monday_roi_2021 >= 0 else 'negative' }}">{{ rounded_monday_roi_2021 }}</td>
+        <td class="{{ 'positive' if rounded_tuesday_roi_2021 >= 0 else 'negative' }}">{{ rounded_tuesday_roi_2021 }}</td>
+        <td class="{{ 'positive' if rounded_wednesday_roi_2021 >= 0 else 'negative' }}">{{ rounded_wednesday_roi_2021 }}</td>
+        <td class="{{ 'positive' if rounded_thursday_roi_2021 >= 0 else 'negative' }}">{{ rounded_thursday_roi_2021 }}</td>
+        <td class="{{ 'positive' if rounded_friday_roi_2021 >= 0 else 'negative' }}">{{ rounded_friday_roi_2021 }}</td>
+    </tr>	
+    {% else %}
+    {% endif %}
+    {% if date_value_2022 == True %}
+
+    <tr>
+        <td>2022</td>
+        <td class="{{ 'positive' if rounded_monday_2022 >= 0 else 'negative' }}">{{ rounded_monday_2022 }}</td>
+        <td class="{{ 'positive' if rounded_tuesday_2022 >= 0 else 'negative' }}">{{ rounded_tuesday_2022 }}</td>
+        <td class="{{ 'positive' if rounded_wednesday_2022 >= 0 else 'negative' }}">{{ rounded_wednesday_2022 }}</td>
+        <td class="{{ 'positive' if rounded_thursday_2022 >= 0 else 'negative' }}">{{ rounded_thursday_2022 }}</td>
+        <td class="{{ 'positive' if rounded_friday_2022 >= 0 else 'negative' }}">{{ rounded_friday_2022 }}</td>
+    </tr>
+
+    <tr>
+        <td>ROI (2022)</td>
+        <td class="{{ 'positive' if rounded_monday_roi_2022 >= 0 else 'negative' }}">{{ rounded_monday_roi_2022 }}</td>
+        <td class="{{ 'positive' if rounded_tuesday_roi_2022 >= 0 else 'negative' }}">{{ rounded_tuesday_roi_2022 }}</td>
+        <td class="{{ 'positive' if rounded_wednesday_roi_2022 >= 0 else 'negative' }}">{{ rounded_wednesday_roi_2022 }}</td>
+        <td class="{{ 'positive' if rounded_thursday_roi_2022 >= 0 else 'negative' }}">{{ rounded_thursday_roi_2022 }}</td>
+        <td class="{{ 'positive' if rounded_friday_roi_2022 >= 0 else 'negative' }}">{{ rounded_friday_roi_2022 }}</td>
+    </tr>	
+    {% else %}
+    {% endif %}
+    {% if date_value_2023 == True %}
+    <tr>
+        <td>2023</td>
+        <td class="{{ 'positive' if rounded_monday_2023 >= 0 else 'negative' }}">{{ rounded_monday_2023 }}</td>
+        <td class="{{ 'positive' if rounded_tuesday_2023 >= 0 else 'negative' }}">{{ rounded_tuesday_2023 }}</td>
+        <td class="{{ 'positive' if rounded_wednesday_2023 >= 0 else 'negative' }}">{{ rounded_wednesday_2023 }}</td>
+        <td class="{{ 'positive' if rounded_thursday_2023 >= 0 else 'negative' }}">{{ rounded_thursday_2023 }}</td>
+        <td class="{{ 'positive' if rounded_friday_2023 >= 0 else 'negative' }}">{{ rounded_friday_2023 }}</td>
+    </tr>
+
+        <td>ROI (2023)</td>
+        <td class="{{ 'positive' if rounded_monday_roi_2023 >= 0 else 'negative' }}">{{ rounded_monday_roi_2023 }}</td>
+        <td class="{{ 'positive' if rounded_tuesday_roi_2023 >= 0 else 'negative' }}">{{ rounded_tuesday_roi_2023 }}</td>
+        <td class="{{ 'positive' if rounded_wednesday_roi_2023 >= 0 else 'negative' }}">{{ rounded_wednesday_roi_2023 }}</td>
+        <td class="{{ 'positive' if rounded_thursday_roi_2023 >= 0 else 'negative' }}">{{ rounded_thursday_roi_2023 }}</td>
+        <td class="{{ 'positive' if rounded_friday_roi_2023 >= 0 else 'negative' }}">{{ rounded_friday_roi_2023 }}</td>
+    </tr>
+    {% else %}
+    {% endif %}
+</table>
+<br><br><br>
+    <table class="table2">
+        <h1>Monthly Breakup</h1>
+        <br><br><br>
+
+        <tr>
+            <th></th>
+            <th>Jan</th>
+            <th>Feb</th>
+            <th>Mar</th>
+            <th>Apr</th>
+            <th>May</th>
+            <th>Jun</th>
+            <th>Jul</th>
+            <th>Aug</th>
+            <th>Sep</th>
+            <th>Oct</th>
+            <th>Nov</th>
+            <th>Dec</th>
+        </tr>
+        {% if month_value_2018 == True %}
+        <tr>
+            <td>2018</td>
+            <td class="{{ 'positive' if rounded_january_2018 >= 0 else 'negative' }}">{{ rounded_january_2018 }}</td>
+            <td class="{{ 'positive' if rounded_february_2018 >= 0 else 'negative' }}">{{ rounded_february_2018 }}</td>
+            <td class="{{ 'positive' if rounded_march_2018 >= 0 else 'negative' }}">{{ rounded_march_2018 }}</td>
+            <td class="{{ 'positive' if rounded_april_2018 >= 0 else 'negative' }}">{{ rounded_april_2018 }}</td>
+            <td class="{{ 'positive' if rounded_may_2018 >= 0 else 'negative' }}">{{ rounded_may_2018 }}</td>
+            <td class="{{ 'positive' if rounded_june_2018 >= 0 else 'negative' }}">{{ rounded_june_2018 }}</td>
+            <td class="{{ 'positive' if rounded_july_2018 >= 0 else 'negative' }}">{{ rounded_july_2018 }}</td>
+            <td class="{{ 'positive' if rounded_august_2018 >= 0 else 'negative' }}">{{ rounded_august_2018 }}</td>
+            <td class="{{ 'positive' if rounded_september_2018 >= 0 else 'negative' }}">{{ rounded_september_2018 }}</td>
+            <td class="{{ 'positive' if rounded_october_2018 >= 0 else 'negative' }}">{{ rounded_october_2018 }}</td>
+            <td class="{{ 'positive' if rounded_november_2018 >= 0 else 'negative' }}">{{ rounded_november_2018 }}</td>
+            <td class="{{ 'positive' if rounded_december_2018 >= 0 else 'negative' }}">{{ rounded_december_2018 }}</td>
+        </tr>
+        
+        <tr>
+            <td>ROI (2018)</td>
+            <td class="{{ 'positive' if rounded_january_roi_2018 >= 0 else 'negative' }}">{{ rounded_january_roi_2018 }}</td>
+            <td class="{{ 'positive' if rounded_february_roi_2018 >= 0 else 'negative' }}">{{ rounded_february_roi_2018 }}</td>
+            <td class="{{ 'positive' if rounded_march_roi_2018 >= 0 else 'negative' }}">{{ rounded_march_roi_2018 }}</td>
+            <td class="{{ 'positive' if rounded_april_roi_2018 >= 0 else 'negative' }}">{{ rounded_april_roi_2018 }}</td>
+            <td class="{{ 'positive' if rounded_may_roi_2018 >= 0 else 'negative' }}">{{ rounded_may_roi_2018 }}</td>
+            <td class="{{ 'positive' if rounded_june_roi_2018 >= 0 else 'negative' }}">{{ rounded_june_roi_2018 }}</td>
+            <td class="{{ 'positive' if rounded_july_roi_2018 >= 0 else 'negative' }}">{{ rounded_july_roi_2018 }}</td>
+            <td class="{{ 'positive' if rounded_august_roi_2018 >= 0 else 'negative' }}">{{ rounded_august_roi_2018 }}</td>
+            <td class="{{ 'positive' if rounded_september_roi_2018 >= 0 else 'negative' }}">{{ rounded_september_roi_2018 }}</td>
+            <td class="{{ 'positive' if rounded_october_roi_2018 >= 0 else 'negative' }}">{{ rounded_october_roi_2018 }}</td>
+            <td class="{{ 'positive' if rounded_november_roi_2018 >= 0 else 'negative' }}">{{ rounded_november_roi_2018 }}</td>
+            <td class="{{ 'positive' if rounded_december_roi_2018 >= 0 else 'negative' }}">{{ rounded_december_roi_2018 }}</td>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if month_value_2019 == True %}
+        <tr>
+            <td>2019</td>
+            <td class="{{ 'positive' if rounded_january_2019 >= 0 else 'negative' }}">{{ rounded_january_2019 }}</td>
+            <td class="{{ 'positive' if rounded_february_2019 >= 0 else 'negative' }}">{{ rounded_february_2019 }}</td>
+            <td class="{{ 'positive' if rounded_march_2019 >= 0 else 'negative' }}">{{ rounded_march_2019 }}</td>
+            <td class="{{ 'positive' if rounded_april_2019 >= 0 else 'negative' }}">{{ rounded_april_2019 }}</td>
+            <td class="{{ 'positive' if rounded_may_2019 >= 0 else 'negative' }}">{{ rounded_may_2019 }}</td>
+            <td class="{{ 'positive' if rounded_june_2019 >= 0 else 'negative' }}">{{ rounded_june_2019 }}</td>
+            <td class="{{ 'positive' if rounded_july_2019 >= 0 else 'negative' }}">{{ rounded_july_2019 }}</td>
+            <td class="{{ 'positive' if rounded_august_2019 >= 0 else 'negative' }}">{{ rounded_august_2019 }}</td>
+            <td class="{{ 'positive' if rounded_september_2019 >= 0 else 'negative' }}">{{ rounded_september_2019 }}</td>
+            <td class="{{ 'positive' if rounded_october_2019 >= 0 else 'negative' }}">{{ rounded_october_2019 }}</td>
+            <td class="{{ 'positive' if rounded_november_2019 >= 0 else 'negative' }}">{{ rounded_november_2019 }}</td>
+            <td class="{{ 'positive' if rounded_december_2019 >= 0 else 'negative' }}">{{ rounded_december_2019 }}</td>
+        </tr>
+        
+        <tr>
+            <td>ROI (2019)</td>
+            <td class="{{ 'positive' if rounded_january_roi_2019 >= 0 else 'negative' }}">{{ rounded_january_roi_2019 }}</td>
+            <td class="{{ 'positive' if rounded_february_roi_2019 >= 0 else 'negative' }}">{{ rounded_february_roi_2019 }}</td>
+            <td class="{{ 'positive' if rounded_march_roi_2019 >= 0 else 'negative' }}">{{ rounded_march_roi_2019 }}</td>
+            <td class="{{ 'positive' if rounded_april_roi_2019 >= 0 else 'negative' }}">{{ rounded_april_roi_2019 }}</td>
+            <td class="{{ 'positive' if rounded_may_roi_2019 >= 0 else 'negative' }}">{{ rounded_may_roi_2019 }}</td>
+            <td class="{{ 'positive' if rounded_june_roi_2019 >= 0 else 'negative' }}">{{ rounded_june_roi_2019 }}</td>
+            <td class="{{ 'positive' if rounded_july_roi_2019 >= 0 else 'negative' }}">{{ rounded_july_roi_2019 }}</td>
+            <td class="{{ 'positive' if rounded_august_roi_2019 >= 0 else 'negative' }}">{{ rounded_august_roi_2019 }}</td>
+            <td class="{{ 'positive' if rounded_september_roi_2019 >= 0 else 'negative' }}">{{ rounded_september_roi_2019 }}</td>
+            <td class="{{ 'positive' if rounded_october_roi_2019 >= 0 else 'negative' }}">{{ rounded_october_roi_2019 }}</td>
+            <td class="{{ 'positive' if rounded_november_roi_2019 >= 0 else 'negative' }}">{{ rounded_november_roi_2019 }}</td>
+            <td class="{{ 'positive' if rounded_december_roi_2019 >= 0 else 'negative' }}">{{ rounded_december_roi_2019 }}</td>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if month_value_2020 == True %}
+        <tr>
+            <td>2020</td>
+            <td class="{{ 'positive' if rounded_january_2020 >= 0 else 'negative' }}">{{ rounded_january_2020 }}</td>
+            <td class="{{ 'positive' if rounded_february_2020 >= 0 else 'negative' }}">{{ rounded_february_2020 }}</td>
+            <td class="{{ 'positive' if rounded_march_2020 >= 0 else 'negative' }}">{{ rounded_march_2020 }}</td>
+            <td class="{{ 'positive' if rounded_april_2020 >= 0 else 'negative' }}">{{ rounded_april_2020 }}</td>
+            <td class="{{ 'positive' if rounded_may_2020 >= 0 else 'negative' }}">{{ rounded_may_2020 }}</td>
+            <td class="{{ 'positive' if rounded_june_2020 >= 0 else 'negative' }}">{{ rounded_june_2020 }}</td>
+            <td class="{{ 'positive' if rounded_july_2020 >= 0 else 'negative' }}">{{ rounded_july_2020 }}</td>
+            <td class="{{ 'positive' if rounded_august_2020 >= 0 else 'negative' }}">{{ rounded_august_2020 }}</td>
+            <td class="{{ 'positive' if rounded_september_2020 >= 0 else 'negative' }}">{{ rounded_september_2020 }}</td>
+            <td class="{{ 'positive' if rounded_october_2020 >= 0 else 'negative' }}">{{ rounded_october_2020 }}</td>
+            <td class="{{ 'positive' if rounded_november_2020 >= 0 else 'negative' }}">{{ rounded_november_2020 }}</td>
+            <td class="{{ 'positive' if rounded_december_2020 >= 0 else 'negative' }}">{{ rounded_december_2020 }}</td>
+        </tr>
+        
+        <tr>
+            <td>ROI (2020)</td>
+            <td class="{{ 'positive' if rounded_january_roi_2020 >= 0 else 'negative' }}">{{ rounded_january_roi_2020 }}</td>
+            <td class="{{ 'positive' if rounded_february_roi_2020 >= 0 else 'negative' }}">{{ rounded_february_roi_2020 }}</td>
+            <td class="{{ 'positive' if rounded_march_roi_2020 >= 0 else 'negative' }}">{{ rounded_march_roi_2020 }}</td>
+            <td class="{{ 'positive' if rounded_april_roi_2020 >= 0 else 'negative' }}">{{ rounded_april_roi_2020 }}</td>
+            <td class="{{ 'positive' if rounded_may_roi_2020 >= 0 else 'negative' }}">{{ rounded_may_roi_2020 }}</td>
+            <td class="{{ 'positive' if rounded_june_roi_2020 >= 0 else 'negative' }}">{{ rounded_june_roi_2020 }}</td>
+            <td class="{{ 'positive' if rounded_july_roi_2020 >= 0 else 'negative' }}">{{ rounded_july_roi_2020 }}</td>
+            <td class="{{ 'positive' if rounded_august_roi_2020 >= 0 else 'negative' }}">{{ rounded_august_roi_2020 }}</td>
+            <td class="{{ 'positive' if rounded_september_roi_2020 >= 0 else 'negative' }}">{{ rounded_september_roi_2020 }}</td>
+            <td class="{{ 'positive' if rounded_october_roi_2020 >= 0 else 'negative' }}">{{ rounded_october_roi_2020 }}</td>
+            <td class="{{ 'positive' if rounded_november_roi_2020 >= 0 else 'negative' }}">{{ rounded_november_roi_2020 }}</td>
+            <td class="{{ 'positive' if rounded_december_roi_2020 >= 0 else 'negative' }}">{{ rounded_december_roi_2020 }}</td>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if month_value_2021 == True %}
+        <tr>
+            <td>2021</td>
+            <td class="{{ 'positive' if rounded_january_2021 >= 0 else 'negative' }}">{{ rounded_january_2021 }}</td>
+            <td class="{{ 'positive' if rounded_february_2021 >= 0 else 'negative' }}">{{ rounded_february_2021 }}</td>
+            <td class="{{ 'positive' if rounded_march_2021 >= 0 else 'negative' }}">{{ rounded_march_2021 }}</td>
+            <td class="{{ 'positive' if rounded_april_2021 >= 0 else 'negative' }}">{{ rounded_april_2021 }}</td>
+            <td class="{{ 'positive' if rounded_may_2021 >= 0 else 'negative' }}">{{ rounded_may_2021 }}</td>
+            <td class="{{ 'positive' if rounded_june_2021 >= 0 else 'negative' }}">{{ rounded_june_2021 }}</td>
+            <td class="{{ 'positive' if rounded_july_2021 >= 0 else 'negative' }}">{{ rounded_july_2021 }}</td>
+            <td class="{{ 'positive' if rounded_august_2021 >= 0 else 'negative' }}">{{ rounded_august_2021 }}</td>
+            <td class="{{ 'positive' if rounded_september_2021 >= 0 else 'negative' }}">{{ rounded_september_2021 }}</td>
+            <td class="{{ 'positive' if rounded_october_2021 >= 0 else 'negative' }}">{{ rounded_october_2021 }}</td>
+            <td class="{{ 'positive' if rounded_november_2021 >= 0 else 'negative' }}">{{ rounded_november_2021 }}</td>
+            <td class="{{ 'positive' if rounded_december_2021 >= 0 else 'negative' }}">{{ rounded_december_2021 }}</td>
+        </tr>
+        
+        <tr>
+            <td>ROI (2021)</td>
+            <td class="{{ 'positive' if rounded_january_roi_2021 >= 0 else 'negative' }}">{{ rounded_january_roi_2021 }}</td>
+            <td class="{{ 'positive' if rounded_february_roi_2021 >= 0 else 'negative' }}">{{ rounded_february_roi_2021 }}</td>
+            <td class="{{ 'positive' if rounded_march_roi_2021 >= 0 else 'negative' }}">{{ rounded_march_roi_2021 }}</td>
+            <td class="{{ 'positive' if rounded_april_roi_2021 >= 0 else 'negative' }}">{{ rounded_april_roi_2021 }}</td>
+            <td class="{{ 'positive' if rounded_may_roi_2021 >= 0 else 'negative' }}">{{ rounded_may_roi_2021 }}</td>
+            <td class="{{ 'positive' if rounded_june_roi_2021 >= 0 else 'negative' }}">{{ rounded_june_roi_2021 }}</td>
+            <td class="{{ 'positive' if rounded_july_roi_2021 >= 0 else 'negative' }}">{{ rounded_july_roi_2021 }}</td>
+            <td class="{{ 'positive' if rounded_august_roi_2021 >= 0 else 'negative' }}">{{ rounded_august_roi_2021 }}</td>
+            <td class="{{ 'positive' if rounded_september_roi_2021 >= 0 else 'negative' }}">{{ rounded_september_roi_2021 }}</td>
+            <td class="{{ 'positive' if rounded_october_roi_2021 >= 0 else 'negative' }}">{{ rounded_october_roi_2021 }}</td>
+            <td class="{{ 'positive' if rounded_november_roi_2021 >= 0 else 'negative' }}">{{ rounded_november_roi_2021 }}</td>
+            <td class="{{ 'positive' if rounded_december_roi_2021 >= 0 else 'negative' }}">{{ rounded_december_roi_2021 }}</td>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if month_value_2022 == True %}
+        
+        <tr>
+            <td>2022</td>
+            <td class="{{ 'positive' if rounded_january_2022 >= 0 else 'negative' }}">{{ rounded_january_2022 }}</td>
+            <td class="{{ 'positive' if rounded_february_2022 >= 0 else 'negative' }}">{{ rounded_february_2022 }}</td>
+            <td class="{{ 'positive' if rounded_march_2022 >= 0 else 'negative' }}">{{ rounded_march_2022 }}</td>
+            <td class="{{ 'positive' if rounded_april_2022 >= 0 else 'negative' }}">{{ rounded_april_2022 }}</td>
+            <td class="{{ 'positive' if rounded_may_2022 >= 0 else 'negative' }}">{{ rounded_may_2022 }}</td>
+            <td class="{{ 'positive' if rounded_june_2022 >= 0 else 'negative' }}">{{ rounded_june_2022 }}</td>
+            <td class="{{ 'positive' if rounded_july_2022 >= 0 else 'negative' }}">{{ rounded_july_2022 }}</td>
+            <td class="{{ 'positive' if rounded_august_2022 >= 0 else 'negative' }}">{{ rounded_august_2022 }}</td>
+            <td class="{{ 'positive' if rounded_september_2022 >= 0 else 'negative' }}">{{ rounded_september_2022 }}</td>
+            <td class="{{ 'positive' if rounded_october_2022 >= 0 else 'negative' }}">{{ rounded_october_2022 }}</td>
+            <td class="{{ 'positive' if rounded_november_2022 >= 0 else 'negative' }}">{{ rounded_november_2022 }}</td>
+            <td class="{{ 'positive' if rounded_december_2022 >= 0 else 'negative' }}">{{ rounded_december_2022 }}</td>
+        </tr>
+        
+        <tr>
+            <td>ROI (2022)</td>
+            <td class="{{ 'positive' if rounded_january_roi_2022 >= 0 else 'negative' }}">{{ rounded_january_roi_2022 }}</td>
+            <td class="{{ 'positive' if rounded_february_roi_2022 >= 0 else 'negative' }}">{{ rounded_february_roi_2022 }}</td>
+            <td class="{{ 'positive' if rounded_march_roi_2022 >= 0 else 'negative' }}">{{ rounded_march_roi_2022 }}</td>
+            <td class="{{ 'positive' if rounded_april_roi_2022 >= 0 else 'negative' }}">{{ rounded_april_roi_2022 }}</td>
+            <td class="{{ 'positive' if rounded_may_roi_2022 >= 0 else 'negative' }}">{{ rounded_may_roi_2022 }}</td>
+            <td class="{{ 'positive' if rounded_june_roi_2022 >= 0 else 'negative' }}">{{ rounded_june_roi_2022 }}</td>
+            <td class="{{ 'positive' if rounded_july_roi_2022 >= 0 else 'negative' }}">{{ rounded_july_roi_2022 }}</td>
+            <td class="{{ 'positive' if rounded_august_roi_2022 >= 0 else 'negative' }}">{{ rounded_august_roi_2022 }}</td>
+            <td class="{{ 'positive' if rounded_september_roi_2022 >= 0 else 'negative' }}">{{ rounded_september_roi_2022 }}</td>
+            <td class="{{ 'positive' if rounded_october_roi_2022 >= 0 else 'negative' }}">{{ rounded_october_roi_2022 }}</td>
+            <td class="{{ 'positive' if rounded_november_roi_2022 >= 0 else 'negative' }}">{{ rounded_november_roi_2022 }}</td>
+            <td class="{{ 'positive' if rounded_december_roi_2022 >= 0 else 'negative' }}">{{ rounded_december_roi_2022 }}</td>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if month_value_2023 == True %}
+        <tr>
+            <td>2023</td>
+            <td class="{{ 'positive' if rounded_january_2023 >= 0 else 'negative' }}">{{ rounded_january_2023 }}</td>
+            <td class="{{ 'positive' if rounded_february_2023 >= 0 else 'negative' }}">{{ rounded_february_2023 }}</td>
+            <td class="{{ 'positive' if rounded_march_2023 >= 0 else 'negative' }}">{{ rounded_march_2023 }}</td>
+            <td class="{{ 'positive' if rounded_april_2023 >= 0 else 'negative' }}">{{ rounded_april_2023 }}</td>
+            <td class="{{ 'positive' if rounded_may_2023 >= 0 else 'negative' }}">{{ rounded_may_2023 }}</td>
+            <td class="{{ 'positive' if rounded_june_2023 >= 0 else 'negative' }}">{{ rounded_june_2023 }}</td>
+            <td class="{{ 'positive' if rounded_july_2023 >= 0 else 'negative' }}">{{ rounded_july_2023 }}</td>
+            <td class="{{ 'positive' if rounded_august_2023 >= 0 else 'negative' }}">{{ rounded_august_2023 }}</td>
+            <td class="{{ 'positive' if rounded_september_2023 >= 0 else 'negative' }}">{{ rounded_september_2023 }}</td>
+            <td class="{{ 'positive' if rounded_october_2023 >= 0 else 'negative' }}">{{ rounded_october_2023 }}</td>
+            <td class="{{ 'positive' if rounded_november_2023 >= 0 else 'negative' }}">{{ rounded_november_2023 }}</td>
+            <td class="{{ 'positive' if rounded_december_2023 >= 0 else 'negative' }}">{{ rounded_december_2023 }}</td>
+        </tr>
+        
+        <tr>
+            <td>ROI (2023)</td>
+            <td class="{{ 'positive' if rounded_january_roi_2023 >= 0 else 'negative' }}">{{ rounded_january_roi_2023 }}</td>
+            <td class="{{ 'positive' if rounded_february_roi_2023 >= 0 else 'negative' }}">{{ rounded_february_roi_2023 }}</td>
+            <td class="{{ 'positive' if rounded_march_roi_2023 >= 0 else 'negative' }}">{{ rounded_march_roi_2023 }}</td>
+            <td class="{{ 'positive' if rounded_april_roi_2023 >= 0 else 'negative' }}">{{ rounded_april_roi_2023 }}</td>
+            <td class="{{ 'positive' if rounded_may_roi_2023 >= 0 else 'negative' }}">{{ rounded_may_roi_2023 }}</td>
+            <td class="{{ 'positive' if rounded_june_roi_2023 >= 0 else 'negative' }}">{{ rounded_june_roi_2023 }}</td>
+            <td class="{{ 'positive' if rounded_july_roi_2023 >= 0 else 'negative' }}">{{ rounded_july_roi_2023 }}</td>
+            <td class="{{ 'positive' if rounded_august_roi_2023 >= 0 else 'negative' }}">{{ rounded_august_roi_2023 }}</td>
+            <td class="{{ 'positive' if rounded_september_roi_2023 >= 0 else 'negative' }}">{{ rounded_september_roi_2023 }}</td>
+            <td class="{{ 'positive' if rounded_october_roi_2023 >= 0 else 'negative' }}">{{ rounded_october_roi_2023 }}</td>
+            <td class="{{ 'positive' if rounded_november_roi_2023 >= 0 else 'negative' }}">{{ rounded_november_roi_2023 }}</td>
+            <td class="{{ 'positive' if rounded_december_roi_2023 >= 0 else 'negative' }}">{{ rounded_december_roi_2023 }}</td>
+        </tr>
+        {% else %}
+        {% endif %}
+        
+    </table>
+    <div class="page"></div> <!-- This will cause a page break after the previous content -->
+    <br><br><br>
+    
+    
+
+
+
+    <table class="table3">
+        <h1>Daywise Logs</h1>
+        <br><br><br>
+    
+        <tr>
+            {% for col in dff1.columns %}
+            <th style="width: {% if col == 'Date' %}130px{% elif col == 'Number of Trades' or col == 'Spot % Change High' or col == 'Spot % Change Close' or col == 'Spot % Change Low' or col == 'Cumulative PNL' or col == 'Max unrealised Profit during whole Day' or col == 'Max unrealised Loss during whole Day' %}80px{% else %}auto{% endif %};">{{ col }}</th>
+            {% endfor %}
+        </tr>
+
+        {% for index, row in dff1.iterrows() %}
+        <tr>
+        {% for col, value in row.items() %}
+        {% if col in ['PNL','Spot % Change High','Spot % Change Low', 'Spot % Change Close', 'Max unrealised Profit during whole Day', 'Max unrealised Loss during whole Day', 'Cumulative PNL'] %}
+        <td style="color: {% if value >= 0 %}green{% else %}red{% endif %};">{{ value }}</td>
+        {% else %}
+        <td>{{ value }}</td>
+        {% endif %}
+        {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+
+
+<div class="page"></div> <!-- This will cause a page break after the previous content -->
+<br><br><br>
+
+
+
+<table class="table4">
+    <h1>Tradewise Logs</h1>
+    <br><br><br>
+
+    <tr>
+        {% for col in dff2.columns %}
+        <th style="width: {% if col == 'PNL' %}80px{% elif col == 'Max unrealised Profit during whole trade' or col == 'Max unrealised loss during whole trade' %}100px{% elif col == 'Date' %}120px{% elif col == '#Trades' %}10px{% else %}auto{% endif %};">{{ col }}</th>
+        {% endfor %}
+    </tr>
+
+    {% for index, row in dff2.iterrows() %}
+    <tr>
+    {% for col, value in row.items() %}
+    {% if col in ['PNL', 'Max unrealised Profit during whole trade', 'Max unrealised loss during whole trade'] %}
+    <td style="color: {% if value >= 0 %}green{% else %}red{% endif %};">{{ value }}</td>
+    {% else %}
+    <td>{{ value }}</td>
+    {% endif %}
+    {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+<br><br><br>
+
+<div class="page"></div> <!-- This will cause a page break after the previous content -->
+<h1>Detailed Logs</h1>
+
+<pre>
+    {{ output_content }}
+    <img src="data:image/png;base64,{{ img2 }}" style="float: right; margin-right: 2%; margin-top: -8%;" width="85px" height="auto">
+</pre>
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
